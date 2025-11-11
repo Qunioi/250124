@@ -1,0 +1,68 @@
+{
+  "headerNav": [
+    { "title": "首页", "link": "/", "navClass": "first", "pageClass": "first", "img": "", "subItems": [] },
+    { "title": "电子游艺", "link": "/casino", "navClass": "game", "pageClass": "game casino", "img": "game", "subItems": [] },
+    { "title": "视讯直播", "link": "/live", "navClass": "live", "pageClass": "game live", "img": "live", "subItems": [] },
+    { "title": "棋牌游戏", "link": "/card", "navClass": "card", "pageClass": "game card", "img": "card", "subItems": [] },
+    { "title": "体育赛事", "link": "/sport", "navClass": "ball", "pageClass": "game sport", "img": "ball", "subItems": [] },
+    { "title": "彩票游戏", "link": "/lottery", "navClass": "ltlottery", "pageClass": "game lottery", "img": "lottery", "subItems": [] },
+    { "title": "优惠活动", "link": "/promotion", "navClass": "promotion", "pageClass": "promotion", "img": "", "subItems": [] },
+    { "title": "手机下注", "link": "", "navClass": "mob", "pageClass": "", "img": "", "subItems": [] },
+    { "title": "合作伙伴", "link": "", "navClass": "agent", "pageClass": "", "img": "", "subItems": [] },
+    { "title": "在线客服", "link": "", "navClass": "service", "pageClass": "", "img": "", "subItems": [] },
+    { "title": "更多", "link": "", "navClass": "morenav", "pageClass": "", "img": "", "subItems": [{ "title": "在线客服", "link": "#" },{ "title": "关于我们", "link": "/about" }] }
+  ],
+  "footerLinks": [
+    { "title": "关于我们", "link": "/about" },
+    { "title": "联系我们", "link": "" },
+    { "title": "合作伙伴", "link": "/article" },
+    { "title": "存款帮助", "link": "" },
+    { "title": "取款帮助", "link": "" },
+    { "title": "常见问题", "link": "" },
+    { "title": "责任博彩", "link": "" },
+    { "title": "备用网址", "link": "" },
+    { "title": "手机下注", "link": "" },
+    { "title": "在线客服", "link": "" }
+  ],
+  "customLinks": [
+    { "title": "设为首页", "link": "" },
+    { "title": "收藏我们", "link": "" },
+    { "title": "线路检测", "link": "" }
+  ],
+  "meminfoLinks": {
+    "first": [
+      { "title": "会员中心", "link": "" },
+      { "title": "线上存款", "link": "" },
+      { "title": "线上取款", "link": "" },
+      { "title": "一键归户", "link": "" },
+      { "title": "未读讯息(1)", "link": "" }
+    ],
+    "ball": [
+      { "title": "下注记录", "link": "" },
+      { "title": "会员中心", "link": "" },
+      { "title": "线上存款", "link": "" },
+      { "title": "线上取款", "link": "" },
+      { "title": "一键归户", "link": "" }
+    ],
+    "else": [
+      { "title": "会员中心", "link": "" },
+      { "title": "线上存款", "link": "" },
+      { "title": "线上取款", "link": "" },
+      { "title": "一键归户", "link": "" }
+    ]
+  },
+  "flatImg": {
+    "left": [
+      { "id": 1, "imgDefault": "float_left_01.png", "imgHover": "" },
+      { "id": 2, "imgDefault": "float_left_02.png", "imgHover": "" },
+      { "id": 3, "imgDefault": "float_left_03.png", "imgHover": "" },
+      { "id": 4, "imgDefault": "float_left_04.png", "imgHover": "" }
+    ],
+    "right": [
+      { "id": 1, "imgDefault": "float_right_01.png", "imgHover": ""  },
+      { "id": 2, "imgDefault": "float_right_02.png", "imgHover": ""  },
+      { "id": 3, "imgDefault": "float_right_03.png", "imgHover": ""  },
+      { "id": 4, "imgDefault": "float_right_04.png", "imgHover": ""  }
+    ]
+  }
+}

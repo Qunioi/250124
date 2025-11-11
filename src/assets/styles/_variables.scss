@@ -1,0 +1,69 @@
+:root {
+  /* layout */
+  --page-width: 1280px;
+  --body-width: 1280px;
+
+  /* 背景影像（預設無） */
+  --page-bg: none;
+
+  /* spacing */
+  --input-padding: 13px;
+
+  /* 餘額區塊 */
+  --balance-bg: rgb(255 255 255);
+  --balance-text: rgb(0 0 0);
+  --balance-tool-bg: rgb(37 73 121);
+  --balance-tool-line: transparent;
+  --balance-btn-bg: rgb(var(--color-secondary-bg));
+  --balance-btn-bg-hover: rgb(var(--color-secondary-bg) / 90%);
+  --balance-btn-text: rgb(0 0 0);
+  --balance-btn-radius: 0px;
+
+  /* 共用色 */
+  --color-red: 210 25 39;
+  --color-primary: var(--color-primary-text);
+  --color-secondary: var(--color-secondary-text);
+
+  /* 預設主題（無品牌時的保底） */
+  --color-primary-bg: 19 34 75;       /* #13224b */
+  --color-secondary-bg: 8 15 34;      /* #080f22 */
+  --color-tertiary-bg: 36 46 76;      /* #242e4c */
+  --color-primary-text: 209 211 216;  /* #d1d3d8 */
+  --color-secondary-text: 121 75 180; /* #7a4cb4 */
+}
+
+/* 250124-1 */
+:root[data-theme~="2501241"] {
+  --color-primary-bg: 235 240 245;       /* #ebf0f5 */
+  --color-secondary-bg: 217 223 250;     /* #d9dffa */
+  --color-tertiary-bg: 153 166 222;      /* #99a6de */
+  --color-primary-text: 66 81 129;      /* #425181 */
+  --color-secondary-text: 122 76 180;   /* #7a4cb4 */
+}
+
+/* 250124-2 */
+:root[data-theme~="2501242"] {
+    --color-primary-bg: 19 34 75;       /* #13224b */
+  --color-secondary-bg: 8 15 34;      /* #080f22 */
+  --color-tertiary-bg: 36 46 76;      /* #242e4c */
+  --color-primary-text: 209 211 216;  /* #d1d3d8 */
+  --color-secondary-text: 121 75 180; /* #7a4cb4 */
+}
+
+/* 250124-3 */
+:root[data-theme~="2501243"] {
+  --color-primary-bg: 92 0 210;           /* #5c00d2 */
+  --color-secondary-bg: 29 2 65;          /* #1d0241 */
+  --color-tertiary-bg: 52 4 114;        /* #340472 */
+  --color-primary-text: 187 181 248;   /* #bbb5f8 */
+  --color-secondary-text: 228 100 248; /* #e464f8 */
+}
+
+/* 250124-4 */
+:root[data-theme~="2501244"] {
+  --color-primary-bg: 245 235 237;       /* #f5ebed */
+  --color-secondary-bg: 250 217 223;     /* #fad9df */
+  --color-tertiary-bg: 224 147 159;    /* #e0939f */
+  --color-primary-text: 129 66 81;    /* #814251 */
+  --color-secondary-text: 180 76 159; /* #b44c9f */
+}

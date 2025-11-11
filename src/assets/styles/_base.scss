@@ -1,0 +1,296 @@
+@use 'sass:list';
+
+
+/* 語言圖標設置 - 切換不同樣式 */
+/* circle 樣式選項: lang_circle_a.png, lang_circle_b.png, lang_circle_c.png, lang_circle_d.png */
+/* rect 樣式選項: lang_rect_a.png, lang_rect_b.png, lang_rect_c.png, lang_rect_d.png */
+$lang-icon-bg: "lang_circle_b";
+
+html {
+    line-height: 1.15; // 校正瀏覽器 line-height
+    -webkit-text-size-adjust: 100%; // 避免iOS裝置旋轉後調整文字大小
+}
+
+/* margin padding 標準化 */
+body, div, ul, ol, li, td, input, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* 移除清單list-style樣式 */
+ul {
+    list-style: none;
+}
+
+/* font-style */
+strong {
+    font-style: normal;
+}
+
+/* font-weight */
+th {
+    font-weight: normal;
+}
+
+/* font-family */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+input,
+select,
+textarea {
+    &:focus {
+        outline: none;
+    }
+}
+
+/* del table border */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* delete img border */
+img {
+    border: 0;
+}
+
+/* caption and th text-align:left */
+th {
+    text-align: left;
+}
+
+/* a */
+a {
+    outline: none; /* for Firefox Google Chrome */
+    text-decoration: none;
+}
+
+/* button */
+button {
+    cursor: pointer;
+    outline: none;
+    font-size: inherit;
+    border: 0;
+    padding: 0;
+}
+
+
+
+
+// lang
+$langs: ('zh-tw', 'zh-cn', 'en');
+.lang-wrap {
+    .ele-lang-wrap {
+        .ele-lang-option {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            width: 20px;
+            height: 20px;
+            background-image: url('/image/not-use/#{$lang-icon-bg}.png');
+            margin: 0 3px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        @for $i from 1 through list.length($langs) {
+            $lang: list.nth($langs, $i);
+            $position: -40px * ($i - 1);
+            .lang-#{$lang} {
+                background-position: 0 #{$position}
+            }
+        }
+    }
+}
+
+// login
+.login-wrap {
+    .ele-login-unit {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        .ele-login-input {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background-color: transparent;
+            padding: 0 0 0 var(--input-padding);
+        }
+    }
+    .ele-login-placeholder {
+        position: absolute;
+        top: 50%;
+        left: calc(var(--input-padding) + 2px);
+        transform: translateY(-50%);
+    }
+    .ele-acc-unicod,
+    .ele-show-password {
+        position: absolute;
+        top: 50%;
+        right: var(--input-padding);
+        transform: translateY(-50%);
+    }
+    .ele-show-password {
+        width: 17px;
+        height: 18px;
+        -webkit-mask: url('/image/not-use/ic_eyeClose.svg');
+                mask: url('/image/not-use/ic_eyeClose.svg');
+        &.is-show {
+            -webkit-mask: url('/image/not-use/ic_eyeOpen.svg');
+                    mask: url('/image/not-use/ic_eyeOpen.svg');
+        }
+    }
+}
+
+
+.ele-meminfo-unit {
+    position: relative;
+}
+.ele-balance-wrap {
+    width: 270px;
+    font-size: 12px;
+    color: var(--balance-text);
+    background-color: var(--balance-bg);
+    position: absolute;
+    top: 90%;
+    right: 0;
+    z-index: 800;
+    .ele-balance-item {
+        line-height: 1.6;
+        padding: 16px;
+    }
+    .ele-balance {
+        white-space: nowrap
+    }
+    .ele-balance-tool {
+        display: flex;
+        justify-content: flex-end;
+        background-color: var(--balance-tool-bg);
+        border-top: 1px solid transparent;
+        padding: 4px;
+    }
+    .ele-balance-btn {
+        cursor: pointer;
+        color: var(--balance-btn-text);
+        line-height: 30px;
+        text-decoration: none;
+        background-color: var(--balance-btn-bg);
+        border-radius: var(--balance-btn-radius);
+        padding: 0 .5rem;
+        transition: background-color .2s linear;
+        &:hover {
+            background-color: var(--balance-btn-bg-hover);
+        }
+    }
+}
+
+
+
+
+// === 子選單樣式 - 以背景色分類 ===
+.ele-subnav {
+    width: 100%;
+    min-width: 1000px;
+    background-color: rgb(18 18 18 / 85%);
+    box-shadow: 2px 3px 3px rgb(16 16 16 / 30%);
+    padding: 30px 0;
+    position: absolute;
+    left: 0;
+    z-index: 901;
+    &.ele-subnav-type-1 {
+        background-color: rgb(18 18 18 / 85%);
+        .ele-navbar-sublink {
+            color: rgb(255 255 255);
+        }
+    }
+    &.ele-subnav-type-2 {
+        background-color: rgb(85 85 85 / 85%);
+        .ele-navbar-sublink {
+            color: rgb(255 255 255);
+        }
+    }
+    &.ele-subnav-type-3 {
+        background-color: rgb(249 249 249 / 95%);
+        .ele-navbar-sublink {
+            color: rgb(51 51 51);
+        }
+    }
+    &.ele-subnav-type-4 {
+        background-color: rgba(255 255 255 / 95%);
+        .ele-navbar-sublink {
+            color: rgb(51 51 51);
+        }
+    }
+
+    .ele-subnav-container {
+        width: var(--page-width);
+        margin: 0 auto;
+        > ul {
+            display: inline-grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 16px 0;
+            width: calc(100% - 200px);
+            vertical-align: top;
+        }
+    }
+    .ele-subnav-title {
+        margin-right: 26px;
+    }
+    .ele-navbar-sublink {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: rgb(255 255 255);
+        &:hover {
+            color: rgb(var(--color-primary));
+        }
+    }
+    .ele-subnav-icon {
+        width: 120px;
+        height: 40px;
+    }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+
+
+.page-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgb(var(--color-primary-bg) / 90%);
+    z-index: 999;
+    transition: opacity 0.3s;
+    &:after {
+        content: '';
+        display: block;
+        background-image: url('/image/not-use/main_loading.svg');
+        background-size: 40%;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 206px;
+        height: 173px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+}
