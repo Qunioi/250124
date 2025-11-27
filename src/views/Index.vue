@@ -1,115 +1,69 @@
 <template>
   <div class="page-container">
-    <!-- <FloatImg /> -->
-    <section class="first-section-wrap first-slider-wrap">
-      <!-- 轮播 -->
-      <div class="ele-slider-wrap slider-wrap">
-        <Swiper
-          :modules="[Autoplay, Pagination]"
-          :pagination="{ clickable: true }"
-          :slides-per-view="1"
-          :loop="true"
-          :allowTouchMove="false">
-          <SwiperSlide v-for="(slide, index) in slides" :key="slide.id">
-            <img :src="getPath(`image/${themeColor}/${slide.image}`)" class="ele-slider-img" />
-          </SwiperSlide>
-        </Swiper>
-      </div>
+    <section class="first-section-wrap first-game-wrap">
       <div class="section-wrap">
-        <div class="first-website-wrap">
-          <div class="first-website-inner">
-            <div class="website-item">
-              <div class="website-item-icon website-item-icon--deposit"></div>
-              <div class="website-item-title">存款平均<br>到帐时间</div>
-              <div class="website-item-num"><span>20</span>秒</div>
-            </div>
-            <div class="website-item">
-              <div class="website-item-icon website-item-icon--withdraw"></div>
-              <div class="website-item-title">取款平均<br>到帐时间</div>
-              <div class="website-item-num"><span>20</span>秒</div>
-            </div>
-            <div class="website-item">
-              <div class="website-item-icon website-item-icon--platform"></div>
-              <div class="website-item-title">官方合作<br>游戏平台</div>
-              <div class="website-item-num"><span>50</span>家</div>
-            </div>
-            <div class="website-item">
-              <div class="website-item-icon website-item-icon--bank"></div>
-              <div class="website-item-title">银行服务<br>合作平台</div>
-              <div class="website-item-num"><span>30</span>家</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="first-section-wrap first-hotgame-wrap">
-      <div class="section-wrap">
-        <div class="first-hotgame-header">
-          <div class="first-hotgame-title">
-            <img :src="getPath(`image/lang/${lang}/first_hotgame_title.png`)" />
-          </div>
-          <button class="first-hotgame-more-btn">
-            <span>More</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 512 512" fill="currentColor">
-              <path
-                d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM241 377c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l87-87-87-87c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L345 239c9.4 9.4 9.4 24.6 0 33.9L241 377z" />
-            </svg>
+        <div class="first-game-tabs">
+          <button
+            v-for="(tab, key) in firstGame"
+            :key="key"
+            class="tab"
+            :class="{ active: activeTab === key }"
+            @click="activeTab = key"
+          >
+            <span>{{ tab.label }}</span>
           </button>
         </div>
-        <div class="first-hotgame-container">
-          <a href="#" class="first-hotgame-link" :style="{ backgroundImage: `url(${getPath(`image/${themeColor}/lang/${lang}/first_hotgame0${n}.png`)})` }" v-for="n in 5" :key="n"></a>
-        </div>
+        <transition name="fade" mode="out-in">
+          <div class="first-game-box" v-if="firstGame[activeTab]?.game?.length">
+            <div class="first-game-items">
+              <a href="#" class="first-game-item" v-for="(game, index) in firstGame[activeTab].game" :key="index">
+                <div class="item-img">
+                  <button class="item-btn"><i></i></button>
+                  <img :src="getPath(`image/${themeColor}/first_game_${activeTab}${String(index + 1).padStart(2, '0')}.png`)" />
+                </div>
+                <div class="item-name">
+                  <div class="name">{{ game }}</div>
+                </div>
+              </a>
+            </div>
+            <div :class="`first-game-title first-game-title-${activeTab}`">
+              <img :src="getPath(`image/${themeColor}/first_game_${activeTab}_title.png`)" class="first-game-title-img" />
+            </div>
+          </div>
+        </transition>
       </div>
     </section>
-    <section class="first-section-wrap first-Platform-wrap">
+    <section class="first-section-wrap first-mob-wrap" :style="{ backgroundImage: `url(${getPath(`image/${themeColor}/first_mob_bg.png`)})` }">
       <div class="section-wrap">
-        <a href="#" v-for="(platform, index) in ['game', 'lottery', 'card', 'live', 'sport']" :key="index">
-          <img
-            :src="platformHover === index
-                ? getPath(`image/${themeColor}/lang/${lang}/first_platform_${platform}_h.png`)
-                : getPath(`image/${themeColor}/lang/${lang}/first_platform_${platform}.png`)"
-            @mouseenter="platformHover = index"
-            @mouseleave="platformHover = null"
-          />
-        </a>
-      </div>
-    </section>
-    <section class="first-section-wrap first-mobile-wrap">
-      <div class="section-wrap">
-        <div class="first-mobile-left-wrap">
-          <div class="first-mobile-title"></div>
-            <div class="first-intro-text">
-              独家原生APP给玩家最优质的画面，便捷登录、操作简单，随时随地都可投注，极速稳定畅通，无阻多款游戏任由你畅玩。
-            </div>
-            <div class="first-mobile-info-wrap">
-              <div class="first-mobile-qrcode-wrap">
-                <div class="img-qrcode-bg">
-                  <!-- <img src="/image/not-use/qrcode.jpg" alt=""> -->
-                  <img :src="isLoggedIn
-                    ? getPath(`image/not-use/qrcode.jpg`)
-                    : getPath(`image/not-use/lang/${lang}/${imgQrcode}.png`)" class="first-mob-qrcode-img" />
-                </div>
-                <div class="first-mobile-info-title">扫码下载App</div>
-                <p>支持 ios & Android</p>
-                <div class="first-mobile-info-highlight">
-                  <div class="first-mobile-info-icon ios"></div>
-                  ios
-                  <div class="first-mobile-info-icon android"></div>
-                  Android
-                </div>
-              </div>
-              <div class="first-mobile-h5-wrap">
-                <div class="img-h5-bg"></div>
-                <div class="first-mobile-info-title">直接访问</div>
-                <p>手机输入网址即可访问</p>
-                <div class="first-mobile-info-highlight">bbin.com</div>
-              </div>
-            </div>
+        <div class="first-mob-left-wrap">
+          <img class="first-mob-phone" :src="getPath(`image/bg_mobile.png`)">
         </div>
-        <div class="first-mobile-right-wrap">
-          <img v-for="index in 5" :key="index" :src="getPath(`image/first_mob0${index}.png`)"
-            :class="`first-mobile-phone-img first-mobile-phone-img0${index}`" />
-          <svg class="first-mobile-right-bg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="812px" height="722px"><path fill-rule="evenodd" fill="currentColor" d="M811.768,-0.000 L172.1000,-0.000 L-0.000,720.1000 L550.060,721.090 L701.564,86.965 C713.747,35.973 759.333,-0.000 811.768,-0.000 Z" /></svg>
+        <div class="first-mob-right-wrap">
+          <div class="first-mob-title">
+            业内顶尖原生APP
+          </div>
+          <div class="first-mob-description">
+            最顶尖的手机投注APP希望您始终能感受到品牌对<br>
+            专业的执着！原生体育APP，便捷登录、操作简单、<br><br></br>
+            界面一目了然、游戏畅通无阻、酷炫玩法全覆盖，
+            指尖体育APP精彩无处不在。
+          </div>
+          <div class="first-mob-download">
+            <div class="first-mob-qrcode">
+              <div class="first-mob-bg">
+                <img :src="isLoggedIn
+                ? getPath('image/not-use/qrcode.jpg')
+                : getPath(`image/not-use/lang/${lang}/${imgQrcode}.png`)" class="first-mob-qrcode-img" />
+              </div>
+              <div class="first-mob-text"><div class="first-mob-text-top">扫码下载APP</div><div class="first-mob-text-bottom">iOS & Android</div></div>
+            </div>
+            <div class="first-mob-h5">
+              <div class="first-mob-bg">
+                <div class="first-mob-h5-img"></div>
+              </div>
+              <div class="first-mob-text"><div class="first-mob-text-top">无需下载直接访问</div><div class="first-mob-text-bottom">web.bbinpartner.com</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -117,27 +71,41 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia';
-import News from '@/components/common/News.vue';
-import HotGame from '@/components/common/HotGame.vue';
-import FloatImg from '@/components/common/FloatImg.vue';
 import { useTheme } from '@/composables/useTheme.js';
 import { useAuthStore } from '@/stores/authStore.js';
 import { getPath } from '@/composables/usePath.js'
+import FloatImg from '@/components/common/FloatImg.vue';
 
 const { themeColor, lang, imgQrcode } = useTheme(); // 使用动态主题和语言设定
 const authStore = useAuthStore();
 const { isLoggedIn } = storeToRefs(authStore); // 使用全域登入状态
+const enableThemeManager = inject('enableThemeManager')
 
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-
-// 轮播图资料
-const slides = ref([
-  { id: 1, image: 'slider01.jpg' },
-  { id: 2, image: 'slider02.jpg' }
-]);
-const platformHover = ref(null);
+const activeTab = ref('sports');
+const firstGame = ref({
+  sports: {
+    label: '体育赛事',
+    game: ['BB体育', '皇冠体育', '波音体育', '沙巴体育', 'New BB体育', '沙巴电竞', 'New BB电竞', '熊猫体育']
+  },
+  live: {
+    label: '视讯直播',
+    game: ['BB视讯', 'PA视讯', 'BG视讯', 'MG视讯', 'PT视讯', 'EVO视讯', 'DB视讯', 'PP视讯']
+  },
+  casino: {
+    label: '电子游艺',
+    game: ['BB电子', 'JDB电子', 'MG电子', 'PA电子', 'CQ9电子', '大满贯电子', 'PG电子', 'PT电子']
+  },
+  lottery: {
+    label: '彩票游戏',
+    game: ['BB彩票', 'VR彩票', 'CC彩票']
+  },
+  card: {
+    label: '棋牌游戏',
+    game: ['BB棋牌', '开元棋牌', 'JDB棋牌', 'FG棋牌', 'WG棋牌', 'MT棋牌', '乐游棋牌', '百胜棋牌']
+  },
+  fish: {
+    label: '捕鱼游戏',
+    game: ['BB捕鱼', 'CQ9捕鱼', 'MT捕鱼', 'PA捕鱼', 'JDB捕鱼', 'PP捕鱼', 'VA捕鱼', 'FG捕鱼']
+  }
+});
 </script>

@@ -2,18 +2,24 @@
   <footer class="page-footer">
     <div class="footer-top-wrap">
       <img :src="getPath(`image/${themeColor}/footer_img01.png`)">
-      <div class="footer-top-line"></div>
-      <img :src="getPath(`image/${themeColor}/footer_img02.png`)">
     </div>
     <div class="footer-bottom-wrap">
       <div class="bottom-link-wrap">
         <FooterLink />
       </div>
       <div class="footer-logo-wrap">
-        <img class="footer-logo-bb" :src="getPath(`image/not-use/${themeFooterLogo.bb}.png`)" width="96" />
-        <a class="footer-logo-ub" href="#">
-          <img :src="getPath(`image/not-use/ublogo/${themeFooterLogo.ub}.png`)" width="162" />
-        </a>
+        <div class="footer-logo-left">
+          <img class="footer-logo-bb" :src="getPath(`image/not-use/${themeFooterLogo.bb}.png`)" width="104" />
+          <a class="footer-logo-ub" href="#">
+            <img :src="getPath(`image/not-use/ublogo/${themeFooterLogo.ub}.png`)" width="175" />
+          </a>
+        </div>
+        <div class="footer-logo-right">
+          <img :src="getPath(`image/footer_img02.png`)">
+        </div>
+      </div>
+      <div class="footer-text-wrap">
+        <p>BBIN拥有欧洲马尔他博彩管理局(MGA)和菲律宾政府竞猜委员会(PAGCOR)颁发的合法执照。<br>注册于英属维尔京群岛，受国际博彩协会认可的合法博彩公司。进行注册并娱乐前，请确保您年满18岁！</p>
       </div>
       <div class="copyright">Copyright © BBIN Reserved</div>
     </div>

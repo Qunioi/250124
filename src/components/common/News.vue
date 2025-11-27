@@ -1,11 +1,13 @@
 <template>
   <div class="news-wrap">
-    <div class="news-title">NEWS</div>
-    <div class="news-item">
-      <div class="ele-msgnews-wrap">
-        <div class="marquee-wrapper" @mouseenter="pauseAnimation" @mouseleave="resumeAnimation">
-          <div ref="marqueeContent" class="marquee-content" :style="{ transform: `translateX(${translateX}px)` }">
-            <a href="#" class="ele-msgnews-link" v-for="(text, index) in duplicatedNewsTexts" :key="index">{{ text }}</a>
+    <div class="news-container">
+      <div class="news-title"><i class="news-title-icon"></i>最新消息</div>
+      <div class="news-item">
+        <div class="ele-msgnews-wrap">
+          <div class="marquee-wrapper" @mouseenter="pauseAnimation" @mouseleave="resumeAnimation">
+            <div ref="marqueeContent" class="marquee-content" :style="{ transform: `translateX(${translateX}px)` }">
+              <a href="#" class="ele-msgnews-link" v-for="(text, index) in duplicatedNewsTexts" :key="index">{{ text }}</a>
+            </div>
           </div>
         </div>
       </div>

@@ -1,16 +1,16 @@
 {
-  "colorVariables": [4, 5, 6, 7, 8],
+  "colorVariables": [1, 4, 5, 7, 8],
   "colorThemes": [
     {
-      "themeSort": 3,
-      "themeMode": "light",
+      "themeSort": 1,
+      "themeMode": "dark",
       "themeName": "2501241",
       "themeColor": {
-        "primary": "#5c00d2",
-        "secondary": "#bbb5f8"
+        "primary": "#3673FE",
+        "secondary": "#2C2C2C"
       },
-      "themeNav": "type-3",
-      "imgQrcode": "qrcode_a",
+      "themeNav": "type-1",
+      "imgQrcode": "qrcode_g",
       "footerLogo": {
         "bb": "white",
         "ub": "ublogo_i"
@@ -18,12 +18,12 @@
       "value": "2501241"
     },
     {
-      "themeSort": 1,
+      "themeSort": 2,
       "themeMode": "dark",
       "themeName": "2501242",
       "themeColor": {
-        "primary": "#13224b",
-        "secondary": "#425181"
+        "primary": "#F2BD31",
+        "secondary": "#1F0204"
       },
       "themeNav": "type-1",
       "imgQrcode": "qrcode_a",
@@ -34,12 +34,12 @@
       "value": "2501242"
     },
     {
-      "themeSort": 2,
-      "themeMode": "dark",
+      "themeSort": 3,
+      "themeMode": "light",
       "themeName": "2501243",
       "themeColor": {
-        "primary": "#ebf0f5",
-        "secondary": "#425181"
+        "primary": "#3673FE",
+        "secondary": "#F8F9FD"
       },
       "themeNav": "type-3",
       "imgQrcode": "qrcode_a",
@@ -54,8 +54,8 @@
       "themeMode": "light",
       "themeName": "2501244",
       "themeColor": {
-        "primary": "#f5ebed",
-        "secondary": "#814251"
+        "primary": "#FC4547",
+        "secondary": "#EDEDED"
       },
       "themeNav": "type-3",
       "imgQrcode": "qrcode_a",

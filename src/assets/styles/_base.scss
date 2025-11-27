@@ -4,7 +4,7 @@
 /* 語言圖標設置 - 切換不同樣式 */
 /* circle 樣式選項: lang_circle_a.png, lang_circle_b.png, lang_circle_c.png, lang_circle_d.png */
 /* rect 樣式選項: lang_rect_a.png, lang_rect_b.png, lang_rect_c.png, lang_rect_d.png */
-$lang-icon-bg: "lang_circle_b";
+$lang-icon-bg: "lang_circle_a";
 
 html {
     line-height: 1.15; // 校正瀏覽器 line-height
@@ -138,11 +138,9 @@ $langs: ('zh-tw', 'zh-cn', 'en');
     .ele-show-password {
         width: 17px;
         height: 18px;
-        -webkit-mask: url('/image/not-use/ic_eyeClose.svg');
-                mask: url('/image/not-use/ic_eyeClose.svg');
+        mask: url('/image/not-use/ic_eyeClose.svg');
         &.is-show {
-            -webkit-mask: url('/image/not-use/ic_eyeOpen.svg');
-                    mask: url('/image/not-use/ic_eyeOpen.svg');
+            mask: url('/image/not-use/ic_eyeOpen.svg');
         }
     }
 }
@@ -152,17 +150,29 @@ $langs: ('zh-tw', 'zh-cn', 'en');
     position: relative;
 }
 .ele-balance-wrap {
+    overflow: hidden;
     width: 270px;
     font-size: 12px;
     color: var(--balance-text);
     background-color: var(--balance-bg);
+    border-radius: var(--balance-btn-radius);
     position: absolute;
-    top: 90%;
-    right: 0;
-    z-index: 800;
+    top: 100%;
+    left: 50%;
+    z-index: 9;
     .ele-balance-item {
         line-height: 1.6;
         padding: 16px;
+        position: relative;
+        &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(var(--color-primary) / 10%);
+            position: absolute;
+            inset: 0;
+        }
     }
     .ele-balance {
         white-space: nowrap
@@ -201,7 +211,7 @@ $langs: ('zh-tw', 'zh-cn', 'en');
     padding: 30px 0;
     position: absolute;
     left: 0;
-    z-index: 901;
+    z-index: z("subnav");
     &.ele-subnav-type-1 {
         background-color: rgb(18 18 18 / 85%);
         .ele-navbar-sublink {
@@ -221,7 +231,7 @@ $langs: ('zh-tw', 'zh-cn', 'en');
         }
     }
     &.ele-subnav-type-4 {
-        background-color: rgba(255 255 255 / 95%);
+        background-color: rgb(255 255 255 / 95%);
         .ele-navbar-sublink {
             color: rgb(51 51 51);
         }
@@ -276,7 +286,7 @@ $langs: ('zh-tw', 'zh-cn', 'en');
     width: 100%;
     height: 100%;
     background: rgb(var(--color-primary-bg) / 90%);
-    z-index: 999;
+    z-index: z("loading");
     transition: opacity 0.3s;
     &:after {
         content: '';
@@ -291,6 +301,5 @@ $langs: ('zh-tw', 'zh-cn', 'en');
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        z-index: 1;
     }
 }

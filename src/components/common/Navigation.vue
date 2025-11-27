@@ -12,6 +12,7 @@
           <!-- 如果 link 為空，渲染靜態文本 -->
           <template v-if="!item.link">
             <span class="ele-navbar-link">
+              <i class="ele-navbar-icon"></i>
               <p class="ele-navbar-title">{{ item.title }}</p>
             </span>
           </template>
@@ -22,6 +23,7 @@
               class="ele-navbar-link"
               :class="{ active: isActive(item.link) }"
             >
+              <i class="ele-navbar-icon"></i>
               <p class="ele-navbar-title">{{ item.title }}</p>
             </router-link>
           </template>
@@ -97,6 +99,7 @@ const getSubNavItems = (link) => {
   if (link === '/card') return headerNavSub.value.card;
   if (link === '/sport') return headerNavSub.value.sport;
   if (link === '/lottery') return headerNavSub.value.lottery;
+  if (link === '/fisharea') return headerNavSub.value.fisharea;
 
   return null;
 };
@@ -108,6 +111,7 @@ const getRouteKey = (link) => {
   if (link === '/card') return 'card';
   if (link === '/sport') return 'ball';
   if (link === '/lottery') return 'lottery';
+  if (link === '/fisharea') return 'game';
 
   return '';
 };// 從 API 獲取導航子選單資料
@@ -124,11 +128,12 @@ const fetchNavData = async () => {
 
     // 重新組織資料結構
     headerNavSub.value = {
-      casino: data.games || [],    // 電子游藝
-      live: data.lives || [],      // 視訊直播
-      card: data.cards || [],      // 棋牌游戲
-      sport: data.balls || [],     // 體育賽事
-      lottery: data.lotterys || [] // 彩票游戲
+      casino: data.games || [],     // 電子游藝
+      live: data.lives || [],       // 視訊直播
+      card: data.cards || [],       // 棋牌游戲
+      sport: data.balls || [],      // 體育賽事
+      lottery: data.lotterys || [], // 彩票游戲
+      fisharea: data.games || []    // 捕魚遊戲
     };
 
     // console.log('Fetched headerNavSub:', headerNavSub.value);

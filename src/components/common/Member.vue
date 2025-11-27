@@ -2,7 +2,8 @@
   <div class="member-wrap">
     <div class="login-wrap" v-if="!isLoggedIn">
       <form @submit.prevent="handleLogin">
-        <div class="login-left">
+        <div class="login-title">会员登入</div>
+        <div class="login-form">
           <label class="ele-login-unit ele-login-unit-account">
             <input
               id="js-username"
@@ -47,18 +48,7 @@
       </form>
     </div>
     <div class="meminfo-wrap" v-else-if="isLoggedIn">
-      <div class="meminfo-link-wrap">
-        <div class="ele-meminfo-link-wrap">
-          <ul>
-            <template v-for="(link, index) in filteredLinks" :key="index">
-              <li class="ele-meminfo-link">
-                <a :href="link.link">{{ link.title }}</a>
-              </li>
-              <span v-if="showSeparator && (showLastSeparator ? index < (filteredLinks?.length ?? 0) : index < ((filteredLinks?.length ?? 0) - 1))" class="ele-meminfo-link-line">{{ separatorContent }}</span>
-            </template>
-          </ul>
-        </div>
-      </div>
+      <div class="meminfo-title">会员资讯</div>
       <div class="mem-info-wrap">
         <div class="ele-meminfo-wrap">
           <div class="ele-meminfo ele-meminfo-name">
@@ -95,6 +85,18 @@
               </div>
             </transition>
           </div>
+        </div>
+      </div>
+      <div class="meminfo-link-wrap">
+        <div class="ele-meminfo-link-wrap">
+          <ul>
+            <template v-for="(link, index) in filteredLinks" :key="index">
+              <li class="ele-meminfo-link">
+                <a :href="link.link">{{ link.title }}</a>
+              </li>
+              <span v-if="showSeparator && (showLastSeparator ? index < (filteredLinks?.length ?? 0) : index < ((filteredLinks?.length ?? 0) - 1))" class="ele-meminfo-link-line">{{ separatorContent }}</span>
+            </template>
+          </ul>
         </div>
         <button type="button" class="ele-logout-btn" @click="handleLogout">登出</button>
       </div>

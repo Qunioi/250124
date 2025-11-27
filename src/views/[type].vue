@@ -16,11 +16,12 @@ const navClass = computed(() => route.params.type)
 
 const hallImage = computed(() => {
   const map = {
-    card: getPath('image/not-use/hall/card_1200.png'),
-    casino: getPath('image/not-use/hall/casino_960.png'),
+    sport: getPath('image/not-use/hall/sport_1200.png'),
     live: getPath('image/not-use/hall/live_960.png'),
+    casino: getPath('image/not-use/hall/casino_960.png'),
     lottery: getPath('image/not-use/hall/lottery_1200.jpg'),
-    sport: getPath('image/not-use/hall/sport_1200.png')
+    card: getPath('image/not-use/hall/card_1200.png'),
+    fisharea: getPath('image/not-use/hall/casino_960.png')
   }
   // 活動頁面需根據主題模式切換
   if (navClass.value === 'promotion') {

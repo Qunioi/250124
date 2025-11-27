@@ -32,6 +32,7 @@
       </div>
     </div>
     <div
+      v-if="isFirst"
       class="themeManager-imgSize-section"
       @mouseenter="handleMouseEnter('slider')"
       @mouseleave="handleMouseLeave">
@@ -45,12 +46,18 @@
 
 <script setup>
 import { useBrandAssetsStore } from '@/stores/brandAssetsStore'
+import { useRoute } from 'vue-router'
 
 const MAX_SIZE = 600 * 1024
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif']
 const ALLOWED_EXTS  = ['jpg','jpeg','png','gif']
 
 const assets = useBrandAssetsStore()
+const route = useRoute()
+
+// 判斷是否為首頁
+const isFirst = computed(() => route.meta?.pageClass?.includes('first'))
+
 const logoSize = ref('偵測中')
 const sliderSize = ref('偵測中')
 
@@ -116,26 +123,8 @@ const removeHighlight = () => {
   }
 }
 
-onMounted(async () => {
-  assets.load()
-  await nextTick()
-
-  const logoEl = await waitForEl('.ele-logo-img', 8000)
-  if (logoEl) {
-    // 先做一次初始化量測（避免一開始 0x0）
-    updateBoxSize(logoEl, logoSize)
-
-    // 若是 <img>，等它 load 後再量一次
-    if (logoEl.tagName === 'IMG' && !isImgComplete(logoEl)) {
-      logoEl.addEventListener('load', () => updateBoxSize(logoEl, logoSize), { once: true })
-      logoEl.addEventListener('error', () => updateBoxSize(logoEl, logoSize), { once: true })
-    }
-
-    // 監聽尺寸變化
-    logoObserver = new ResizeObserver(() => updateBoxSize(logoEl, logoSize))
-    logoObserver.observe(logoEl)
-  }
-
+// 輪播圖偵測邏輯
+async function detectSlider() {
   // 先嘗試找 .ele-slider-img，找不到就找其他可能的容器
   let sliderEl = await waitForEl('.ele-slider-img', 3000);
 
@@ -144,6 +133,7 @@ onMounted(async () => {
     sliderEl = await waitForEl('.ele-slider-wrap', 3000) ||
               await waitForEl('.slider-wrap', 3000);
   }
+  
   if (sliderEl) {
     // 初始量測
     updateSliderSize(sliderEl, sliderSize);
@@ -181,14 +171,64 @@ onMounted(async () => {
       });
       resizeObserver.observe(sliderEl);
     }
+    
+    // 如果需要高亮且在首頁
+    if (showHighlightByDefault && isFirst.value) {
+      addSliderHighlight()
+    }
   } else {
     // 完全找不到輪播元素
     sliderSize.value = '找不到輪播元素';
   }
+}
+
+// 清除輪播圖偵測
+function cleanupSlider() {
+  if (sliderObserver) {
+    sliderObserver.disconnect();
+    sliderObserver = null;
+  }
+  // 移除高亮
+  const sliderHighlight = document.querySelector('.ele-slider-wrap .ele-highlight');
+  if (sliderHighlight) sliderHighlight.remove();
+}
+
+// 監聽路由變化
+watch(isFirst, async (val) => {
+  if (val) {
+    sliderSize.value = '偵測中...';
+    await nextTick();
+    detectSlider();
+  } else {
+    sliderSize.value = '非首頁';
+    cleanupSlider();
+  }
+}, { immediate: true });
+
+onMounted(async () => {
+  assets.load()
+  await nextTick()
+
+  const logoEl = await waitForEl('.ele-logo-img', 8000)
+  if (logoEl) {
+    // 先做一次初始化量測（避免一開始 0x0）
+    updateBoxSize(logoEl, logoSize)
+
+    // 若是 <img>，等它 load 後再量一次
+    if (logoEl.tagName === 'IMG' && !isImgComplete(logoEl)) {
+      logoEl.addEventListener('load', () => updateBoxSize(logoEl, logoSize), { once: true })
+      logoEl.addEventListener('error', () => updateBoxSize(logoEl, logoSize), { once: true })
+    }
+
+    // 監聽尺寸變化
+    logoObserver = new ResizeObserver(() => updateBoxSize(logoEl, logoSize))
+    logoObserver.observe(logoEl)
+  }
+
+  // Logo 高亮
   if (showHighlightByDefault) {
     await nextTick()
     addLogoHighlight()
-    addSliderHighlight()
   }
 })
 
@@ -399,8 +439,8 @@ function loadImageSize(dataUrl) {
 }
 :global(.ele-highlight) {
   align-items: center;
-  background-color: #55d97f99;
-  color: #fff;
+  background-color: rgb(85 217 127 / 60%);
+  color: rgb(255 255 255);
   display: flex;
   font-size: 5rem;
   font-weight: 700;
@@ -409,7 +449,7 @@ function loadImageSize(dataUrl) {
   left: 0;
   pointer-events: none;
   position: absolute;
-  text-shadow: 0 0 10px rgba(0, 0, 0, .7);
+  text-shadow: 0 0 10px rgb(0 0 0 / 70%);
   top: 0;
   width: 100%;
   z-index: 99;
@@ -431,7 +471,7 @@ function loadImageSize(dataUrl) {
   padding: 10px;
   &:hover {
     .themeManager-imgSize-size {
-      color: #fff;
+      color: rgb(255 255 255);
       background-color: var(--cp-color-secondary);
     }
   }
@@ -456,9 +496,9 @@ function loadImageSize(dataUrl) {
 
   .themeManager-imgSize-size {
     font-size: 12px;
-    color: #1e2233;
-    background-color: #fff;
-    border: 1px solid #e8e8ef;
+    color: rgb(30 34 51);
+    background-color: rgb(255 255 255);
+    border: 1px solid rgb(232 232 239);
     border-radius: 20px;
     padding: 3px 8px 2px;
     transition: background-color .3s, color .3s;
@@ -494,7 +534,7 @@ function loadImageSize(dataUrl) {
     position: relative;
     transition: background-color .3s;
     appearance: none;
-    color: #fff;
+    color: rgb(255 255 255);
     background-color: var(--cp-color-primary);
 
     &:hover {

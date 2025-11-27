@@ -5,7 +5,7 @@
         <li class="ele-custom-link">
           <a :href="link.link">{{ link.title }}</a>
         </li>
-        <span v-if="showSeparator && index < customLinks.length - 1" class="ele-custom-link-line">
+        <span v-if="showSeparator" class="ele-custom-link-line">
           {{ separatorContent }}
         </span>
       </template>
@@ -26,7 +26,7 @@ const props = defineProps({
   },
   separatorContent: {
     type: String,
-    default: ''
+    default: '|'
   }
 });
 </script>
