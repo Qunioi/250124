@@ -26,6 +26,7 @@ dist-ssr
 
 .gitmessage.txt
 .vscode
+src/App.vue
 
 convert.cjs
 convert-all.cjs
