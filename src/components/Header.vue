@@ -28,15 +28,15 @@
       </div>
     </div>
     <div class="header-bottom" v-if="isFirst">
-      <div class="ele-swiper-nav">
-        <button class="first-swiper-btn first-swiper-prev">
-          <span class="first-swiper-icon icon-prev"></span>
-        </button>
-        <button class="first-swiper-btn first-swiper-next">
-          <span class="first-swiper-icon icon-next"></span>
-        </button>
-      </div>
       <div class="header-container">
+        <div class="ele-swiper-nav">
+          <button class="first-swiper-btn first-swiper-prev">
+            <span class="first-swiper-icon icon-prev"></span>
+          </button>
+          <button class="first-swiper-btn first-swiper-next">
+            <span class="first-swiper-icon icon-next"></span>
+          </button>
+        </div>
         <div class="ele-slider-wrap">
           <div class="slider-wrap">
             <Swiper

@@ -15,7 +15,7 @@
         "bb": "white",
         "ub": "ublogo_i"
       },
-      "value": "2501241"
+      "floatGotop": "white"
     },
     {
       "themeSort": 2,
@@ -31,7 +31,7 @@
         "bb": "white",
         "ub": "ublogo_i"
       },
-      "value": "2501242"
+      "floatGotop": "white"
     },
     {
       "themeSort": 3,
@@ -47,7 +47,7 @@
         "bb": "white",
         "ub": "ublogo_i"
       },
-      "value": "2501243"
+      "floatGotop": "white"
     },
     {
       "themeSort": 4,
@@ -63,7 +63,7 @@
         "bb": "white",
         "ub": "ublogo_i"
       },
-      "value": "2501244"
+      "floatGotop": "white"
     }
   ]
 }
