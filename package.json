@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prebuild": "npm run clean:ds",
-    "clean:ds": "find . -name '.DS_Store' -type f -delete",
-    "preview": "vite preview"
+    "prebuild": "npm run clean:ds && npm run fix:colors",
+    "preview": "vite preview",
+    "fix:colors": "node convert-colors.cjs",
+    "clean:ds": "find . -name '.DS_Store' -type f -delete"
   },
   "dependencies": {
     "@cyhnkckali/vue3-color-picker": "^2.1.5",

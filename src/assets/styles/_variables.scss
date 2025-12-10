@@ -59,6 +59,20 @@
     --color-secondary-text: 180 191 209;     /* #B4BFD1 */
 }
 
+
+/* dark */
+:root[data-theme~="dark"] {
+    --first-game-item: 15 15 15; /* #0F0F0F */
+    --first-game-name: 255 255 255;
+}
+
+/* light */
+:root[data-theme~="light"] {
+    --first-game-item: 251 251 251; /* #FBFBFB */
+    --first-game-name: 15 15 15; /* #0F0F0F */
+}
+
+
 /* 2501241 */
 :root[data-theme~="2501241"] {
     --color-primary:        54 115 254;      /* #3673FE */
