@@ -1,14 +1,14 @@
 {
-  "name": "250124",
+  "name": "template_v2",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prebuild": "npm run clean:ds && npm run fix:colors",
+    "prebuild": "npm run clean:ds",
     "preview": "vite preview",
-    "fix:colors": "node convert-colors.cjs",
+    "fix:colors": "node convert-all.cjs",
     "clean:ds": "find . -name '.DS_Store' -type f -delete"
   },
   "dependencies": {
